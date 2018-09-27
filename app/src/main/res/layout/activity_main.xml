@@ -17,16 +17,16 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_main_fragmentActivity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Activity嵌套Fragment" />
-            <Button
                 android:id="@+id/btn_main_install_app"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="下载安装应用测试" />
-        </LinearLayout>
 
+            <Button
+                android:id="@+id/btn_main_bottom_navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BottomNavigation模板" />
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

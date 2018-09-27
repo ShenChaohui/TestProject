@@ -13,7 +13,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-    private static final String DB_NAME = "watercity.db";
+    private static final String DB_NAME = "test.db";
     //数据库名
     private static final int DB_VERSION = 1;
     //数据库版本
@@ -28,7 +28,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
 //        try {
-//            TableUtils.createTable(connectionSource, Monitor.class);
+//            TableUtils.createTable(connectionSource, MovieJson.class);
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
@@ -38,7 +38,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int oldVersion, int newVersion) {
 //        try {
-//            TableUtils.dropTable(connectionSource, Monitor.class, true);
+//            TableUtils.dropTable(connectionSource, MovieJson.class, true);
 //            onCreate(sqLiteDatabase, connectionSource);
 //        } catch (SQLException e) {
 //            e.printStackTrace();
