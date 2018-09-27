@@ -3,6 +3,7 @@
     package="com.genius.zydl.testproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
@@ -24,7 +25,7 @@
         <activity android:name=".activitys.InstallAppActivity" />
         <activity
             android:name=".activitys.BottomNavigationActivity"
-            android:label="@string/title_activity_bottom_navigation"></activity>
+            android:label="@string/title_activity_bottom_navigation" />
     </application>
 
 </manifest>

@@ -51,7 +51,7 @@ public class BottomNavigationActivity extends BasicActivity implements BottomNav
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         switch (menuItem.getItemId()) {
-            case R.id.navigation_home:
+            case R.id.navigation_movie:
                 showFragment(fragmentTransaction, fragmentOne);
                 return true;
             case R.id.navigation_dashboard:

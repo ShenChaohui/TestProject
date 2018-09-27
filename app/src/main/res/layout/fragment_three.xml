@@ -5,24 +5,10 @@
     android:orientation="vertical">
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
+   <Button
+       android:text="打开相机"
+       android:id="@+id/btn_fragment_three"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
 
 </LinearLayout>
