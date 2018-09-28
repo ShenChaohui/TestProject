@@ -65,6 +65,7 @@ public class FragmentThree extends Fragment {
                         .onGranted(new Action<List<String>>() {
                             @Override
                             public void onAction(List<String> data) {
+                                //获去到了权限，启动相机
                                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 启动系统相机
                                 startActivity(intent);
                             }
@@ -72,7 +73,8 @@ public class FragmentThree extends Fragment {
                         .onDenied(new Action<List<String>>() {
                             @Override
                             public void onAction(List<String> data) {
-                                //如果永久忽略了这些权限
+                                //没有获去到权限
+                                //如果是永久忽略了这些权限，提示去设置中打开
                                 if(AndPermission.hasAlwaysDeniedPermission(getActivity(),data)){
                                     //弹窗提示
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
@@ -108,7 +110,6 @@ public class FragmentThree extends Fragment {
                                     });
                                     dialog.show();
                                 }else {//普通的拒绝
-
                                     Toast.makeText(getActivity(),"您拒绝了相机权限，无法打开相机",Toast.LENGTH_SHORT).show();
                                 }
                             }
