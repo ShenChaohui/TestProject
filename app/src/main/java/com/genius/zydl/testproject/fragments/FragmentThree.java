@@ -72,13 +72,16 @@ public class FragmentThree extends Fragment {
                         .onDenied(new Action<List<String>>() {
                             @Override
                             public void onAction(List<String> data) {
+                                //如果永久忽略了这些权限
                                 if(AndPermission.hasAlwaysDeniedPermission(getActivity(),data)){
+                                    //弹窗提示
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                                     dialog.setTitle("您永久的关闭了相机权限，程序无法运行");
                                     dialog.setMessage("是否去设置中打开?");
                                     dialog.setPositiveButton("打开", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
+                                            //去设置中打开
                                             AndPermission.with(getActivity())
                                                     .runtime()
                                                     .setting()
@@ -104,6 +107,9 @@ public class FragmentThree extends Fragment {
                                         }
                                     });
                                     dialog.show();
+                                }else {//普通的拒绝
+
+                                    Toast.makeText(getActivity(),"您拒绝了相机权限，无法打开相机",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         })
