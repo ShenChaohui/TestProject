@@ -26,6 +26,7 @@
         <activity
             android:name=".activitys.BottomNavigationActivity"
             android:label="@string/title_activity_bottom_navigation" />
+        <activity android:name=".activitys.TabLayoutActivity"></activity>
     </application>
 
 </manifest>

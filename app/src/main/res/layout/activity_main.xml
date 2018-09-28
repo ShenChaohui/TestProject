@@ -27,7 +27,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="BottomNavigation模板" />
-
+            <Button
+                android:id="@+id/btn_main_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="tablayout和viewpager绑定" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

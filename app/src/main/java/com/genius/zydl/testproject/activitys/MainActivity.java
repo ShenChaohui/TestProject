@@ -1,8 +1,5 @@
 package com.genius.zydl.testproject.activitys;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,12 +10,11 @@ import android.widget.Button;
 import com.genius.zydl.testproject.R;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
-import com.yanzhenjie.permission.Rationale;
-import com.yanzhenjie.permission.RequestExecutor;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mBtnInstallApp;
     private Button mBtnBottomNavigation;
+    private Button mBtnTablayout;
 
 
     @Override
@@ -27,12 +23,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         AndPermission.with(this)
                 .runtime()
-                .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.CAMERA)
+                .permission(Permission.WRITE_EXTERNAL_STORAGE)
                 .start();
         mBtnInstallApp = findViewById(R.id.btn_main_install_app);
         mBtnInstallApp.setOnClickListener(this);
         mBtnBottomNavigation = findViewById(R.id.btn_main_bottom_navigation);
         mBtnBottomNavigation.setOnClickListener(this);
+        mBtnTablayout = findViewById(R.id.btn_main_tablayout);
+        mBtnTablayout.setOnClickListener(this);
 
     }
 
@@ -45,7 +43,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_main_bottom_navigation:
                 startActivity(new Intent(this, BottomNavigationActivity.class));
                 break;
-
+            case R.id.btn_main_tablayout:
+                startActivity(new Intent(this, TabLayoutActivity.class));
+                break;
         }
 
     }
