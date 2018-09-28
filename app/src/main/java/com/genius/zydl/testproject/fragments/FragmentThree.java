@@ -61,13 +61,12 @@ public class FragmentThree extends Fragment {
                 AndPermission.with(getActivity())
                         .runtime()
                         .permission(Permission.CAMERA)
-                        .rationale(mRationale)
+                        .rationale(mRationale)//拒绝过一次，再请求权限，会进入这个
                         .onGranted(new Action<List<String>>() {
                             @Override
                             public void onAction(List<String> data) {
                                 //获去到了权限，启动相机
-                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 启动系统相机
-                                startActivity(intent);
+                                openCamera();
                             }
                         })
                         .onDenied(new Action<List<String>>() {
@@ -75,10 +74,15 @@ public class FragmentThree extends Fragment {
                             public void onAction(List<String> data) {
                                 //没有获去到权限
                                 //如果是永久忽略了这些权限，提示去设置中打开
-                                if(AndPermission.hasAlwaysDeniedPermission(getActivity(),data)){
+                                if (AndPermission.hasAlwaysDeniedPermission(getActivity(), data)) {
+                                    List<String> permissions = Permission.transformText(getActivity(), data);
+                                    StringBuffer sb = new StringBuffer();
+                                    for (int i = 0; i < permissions.size(); i++) {
+                                        sb.append(permissions.get(i)+"权限,");
+                                    }
                                     //弹窗提示
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                                    dialog.setTitle("您永久的关闭了相机权限，程序无法运行");
+                                    dialog.setTitle("您永久的关闭了"+sb+"程序无法运行");
                                     dialog.setMessage("是否去设置中打开?");
                                     dialog.setPositiveButton("打开", new DialogInterface.OnClickListener() {
                                         @Override
@@ -91,11 +95,10 @@ public class FragmentThree extends Fragment {
                                                         @Override
                                                         public void onAction() {
                                                             // 用户从设置回来了。
-                                                            if(AndPermission.hasPermissions(getActivity(),Permission.CAMERA)){
-                                                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 启动系统相机
-                                                                startActivity(intent);
-                                                            }else {
-                                                                Toast.makeText(getActivity(),"您拒绝了相机权限，无法打开相机",Toast.LENGTH_SHORT).show();
+                                                            if (AndPermission.hasPermissions(getActivity(), Permission.CAMERA)) {
+                                                                openCamera();
+                                                            } else {
+                                                                Toast.makeText(getActivity(), "您拒绝了相机权限，无法打开相机", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     })
@@ -105,12 +108,12 @@ public class FragmentThree extends Fragment {
                                     dialog.setNegativeButton("忽略", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            Toast.makeText(getActivity(),"您拒绝了相机权限，无法打开相机",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), "您拒绝了相机权限，无法打开相机", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                     dialog.show();
-                                }else {//普通的拒绝
-                                    Toast.makeText(getActivity(),"您拒绝了相机权限，无法打开相机",Toast.LENGTH_SHORT).show();
+                                } else {//普通的拒绝
+                                    Toast.makeText(getActivity(), "您拒绝了相机权限，无法打开相机", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         })
@@ -118,5 +121,10 @@ public class FragmentThree extends Fragment {
             }
         });
         return view;
+    }
+
+    private void openCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 启动系统相机
+        startActivity(intent);
     }
 }
