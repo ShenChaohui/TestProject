@@ -44,7 +44,7 @@ public class FragmentOne extends Fragment {
                 holder.setText(R.id.tv_item_one_average, String.valueOf(item.getRating().getAverage()));
             }
         });
-        NetRequestManagers.getMovies(context, 0, 100, mAdapter,mMovies);
+        NetRequestManagers.getMovies(context, 0, 10, mAdapter,mMovies);
         return view;
     }
 

@@ -1,11 +1,12 @@
 package com.genius.zydl.testproject.activitys;
 
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.genius.zydl.testproject.R;
-import com.genius.zydl.testproject.adapters.FragmentListAdapter;
 import com.genius.zydl.testproject.fragments.FragmentThree;
 import com.genius.zydl.testproject.fragments.FragmentTwo;
 
@@ -17,10 +18,10 @@ public class TabLayoutActivity extends BasicActivity {
     private ViewPager mViewPager;
     private List<Fragment> mFragments;
     private List<String> mTitles;
-    private FragmentListAdapter mFragmentListAdapter;
+
     @Override
     protected int getLayout() {
-        return R.layout.activity_tablelayout;
+        return R.layout.activity_tablayout;
     }
 
     @Override
@@ -28,19 +29,33 @@ public class TabLayoutActivity extends BasicActivity {
         initTitle();
         mTabLayout = findViewById(R.id.tablayout);
         mViewPager = findViewById(R.id.viewpager);
+    }
+
+    @Override
+    protected void main() {
         mFragments = new ArrayList<>();
         mTitles = new ArrayList<>();
         mTitles.add("图书");
         mFragments.add(new FragmentTwo());
         mTitles.add("权限");
         mFragments.add(new FragmentThree());
-        mFragmentListAdapter = new FragmentListAdapter(this.getSupportFragmentManager(),mFragments,mTitles);
-        mViewPager.setAdapter(mFragmentListAdapter);
+        mViewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int i) {
+                return mFragments.get(i);
+            }
+
+            @Override
+            public int getCount() {
+                return mFragments.size();
+            }
+
+            @Nullable
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mTitles.get(position);
+            }
+        });
         mTabLayout.setupWithViewPager(mViewPager);
-    }
-
-    @Override
-    protected void main() {
-
     }
 }
