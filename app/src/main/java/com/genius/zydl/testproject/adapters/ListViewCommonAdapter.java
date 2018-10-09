@@ -14,13 +14,13 @@ import java.util.List;
  *
  * @param <T>
  */
-public abstract class CommonAdapter<T> extends BaseAdapter {
+public abstract class ListViewCommonAdapter<T> extends BaseAdapter {
     protected LayoutInflater mInflater;
     protected Context mContext;
     protected List<T> mDatas;
     protected final int mItemLayoutId;
 
-    public CommonAdapter(Context context, List<T> mDatas, int itemLayoutId) {
+    public ListViewCommonAdapter(Context context, List<T> mDatas, int itemLayoutId) {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(mContext);
         this.mDatas = mDatas;

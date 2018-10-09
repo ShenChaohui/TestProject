@@ -20,22 +20,19 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:support-vector-drawable:28.0.0'
-
     //网络请求框架
     implementation 'org.xutils:xutils:3.5.0'
-
     //数据库框架
     implementation 'com.j256.ormlite:ormlite-android:5.0'
     implementation 'com.j256.ormlite:ormlite-core:5.0'
-
     //gson
     implementation 'com.google.code.gson:gson:2.8.5'
-
     //权限
     implementation 'com.yanzhenjie:permission:2.0.0-rc12'
+    implementation files('libs/AMap_Location_V4.2.0_20180809.jar')
 }

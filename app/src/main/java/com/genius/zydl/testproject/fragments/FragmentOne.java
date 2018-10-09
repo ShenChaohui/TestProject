@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.genius.zydl.testproject.R;
-import com.genius.zydl.testproject.adapters.CommonAdapter;
+import com.genius.zydl.testproject.adapters.ListViewCommonAdapter;
 import com.genius.zydl.testproject.adapters.ViewHolder;
 import com.genius.zydl.testproject.entity.Movie;
 import com.genius.zydl.testproject.newwork.NetRequestManagers;
@@ -26,7 +26,7 @@ public class FragmentOne extends Fragment {
     private ListView mListView;
     private Context context;
     private ArrayList<Movie> mMovies;
-    private CommonAdapter mAdapter;
+    private ListViewCommonAdapter mAdapter;
 
     @Nullable
     @Override
@@ -35,7 +35,7 @@ public class FragmentOne extends Fragment {
         context = getActivity();
         mListView = view.findViewById(R.id.lv_one);
         mMovies = new ArrayList<>();
-        mListView.setAdapter(mAdapter = new CommonAdapter<Movie>(context, mMovies, R.layout.item_list_one) {
+        mListView.setAdapter(mAdapter = new ListViewCommonAdapter<Movie>(context, mMovies, R.layout.item_list_one) {
             @Override
             public void convert(ViewHolder holder, Movie item) {
                 x.image().bind((ImageView) holder.getView(R.id.iv_item_one), item.getImages().getLarge());

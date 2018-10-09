@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.genius.zydl.testproject.R;
-import com.genius.zydl.testproject.adapters.CommonAdapter;
+import com.genius.zydl.testproject.adapters.ListViewCommonAdapter;
 import com.genius.zydl.testproject.adapters.ViewHolder;
 import com.genius.zydl.testproject.entity.Book;
 
@@ -29,7 +29,7 @@ public class FragmentTwo extends Fragment {
 
         listView = view.findViewById(R.id.lv_two);
         initData();
-        listView.setAdapter(new CommonAdapter<Book>(getActivity(), books, R.layout.item_list_two) {
+        listView.setAdapter(new ListViewCommonAdapter<Book>(getActivity(), books, R.layout.item_list_two) {
             @Override
             public void convert(ViewHolder holder, final Book item) {
                 holder.setText(R.id.tv_item_list_two_name, "书名：" + item.getName());

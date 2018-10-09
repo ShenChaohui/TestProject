@@ -3,7 +3,7 @@ package com.genius.zydl.testproject.newwork;
 import android.app.ProgressDialog;
 import android.content.Context;
 
-import com.genius.zydl.testproject.adapters.CommonAdapter;
+import com.genius.zydl.testproject.adapters.ListViewCommonAdapter;
 import com.genius.zydl.testproject.entity.Movie;
 import com.genius.zydl.testproject.utils.GsonUtil;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class NetRequestManagers {
 
-    public static void getMovies(final Context context, int start, int count, final CommonAdapter adapter, final ArrayList<Movie> movies) {
+    public static void getMovies(final Context context, int start, int count, final ListViewCommonAdapter adapter, final ArrayList<Movie> movies) {
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle("正在加载...");
         dialog.show();

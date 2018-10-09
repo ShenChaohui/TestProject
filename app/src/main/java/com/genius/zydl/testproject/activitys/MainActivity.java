@@ -5,18 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 
 import com.genius.zydl.testproject.R;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button mBtnInstallApp;
-    private Button mBtnBottomNavigation;
-    private Button mBtnTablayout;
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +19,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .runtime()
                 .permission(Permission.WRITE_EXTERNAL_STORAGE)
                 .start();
-        mBtnInstallApp = findViewById(R.id.btn_main_install_app);
-        mBtnInstallApp.setOnClickListener(this);
-        mBtnBottomNavigation = findViewById(R.id.btn_main_bottom_navigation);
-        mBtnBottomNavigation.setOnClickListener(this);
-        mBtnTablayout = findViewById(R.id.btn_main_tablayout);
-        mBtnTablayout.setOnClickListener(this);
+        findViewById(R.id.btn_main_install_app).setOnClickListener(this);
+        findViewById(R.id.btn_main_bottom_navigation).setOnClickListener(this);
+        findViewById(R.id.btn_main_tablayout).setOnClickListener(this);
+        findViewById(R.id.btn_main_location).setOnClickListener(this);
 
     }
 
@@ -45,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_main_tablayout:
                 startActivity(new Intent(this, TabLayoutActivity.class));
+                break;
+            case R.id.btn_main_location:
+                startActivity(new Intent(this, LocationActivity.class));
                 break;
         }
 

@@ -3,7 +3,6 @@ package com.genius.zydl.testproject.activitys;
 import android.app.ProgressDialog;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.genius.zydl.testproject.R;
 import com.genius.zydl.testproject.utils.PathUtil;
@@ -16,7 +15,6 @@ import org.xutils.x;
 import java.io.File;
 
 public class InstallAppActivity extends BasicActivity {
-    private Button mButton;
     @Override
     protected int getLayout() {
         return R.layout.activity_install_app;
@@ -25,8 +23,7 @@ public class InstallAppActivity extends BasicActivity {
     @Override
     protected void initView() {
         initTitle();
-        mButton = findViewById(R.id.btn_startDownload);
-        mButton.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_startDownload).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DownloadApp();
