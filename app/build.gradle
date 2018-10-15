@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -34,5 +39,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     //权限
     implementation 'com.yanzhenjie:permission:2.0.0-rc12'
-    implementation files('libs/AMap_Location_V4.2.0_20180809.jar')
+    implementation files('libs/AMap3DMap_6.5.0_AMapSearch_6.5.0_20180930.jar')
 }
