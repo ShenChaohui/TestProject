@@ -37,6 +37,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="定位" />
+            <Button
+                android:id="@+id/btn_main_broadcast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="广播"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
