@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_main_tablayout).setOnClickListener(this);
         findViewById(R.id.btn_main_location).setOnClickListener(this);
         findViewById(R.id.btn_main_broadcast).setOnClickListener(this);
+        findViewById(R.id.btn_main_user_permission).setOnClickListener(this);
 
     }
 
@@ -44,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_main_broadcast:
                 startActivity(new Intent(this, BroadcastActivity.class));
+                break;
+            case R.id.btn_main_user_permission:
+                startActivity(new Intent(this, UserPermissionActivity.class));
                 break;
         }
 

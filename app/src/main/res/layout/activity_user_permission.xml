@@ -4,19 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/app_bar_basic" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btn_fragment_three_camera"
+            android:id="@+id/btn_camera"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="拍照" />
 
         <Button
-            android:id="@+id/btn_fragment_three_album"
+            android:id="@+id/btn_album"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -25,9 +27,14 @@
 
 
     <ImageView
-        android:id="@+id/iv_fragment_three"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:id="@+id/iv_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_launcher" />
 
+    <TextView
+        android:id="@+id/tv_photo_path"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

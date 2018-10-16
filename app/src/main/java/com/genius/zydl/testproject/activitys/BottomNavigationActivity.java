@@ -9,12 +9,11 @@ import android.view.MenuItem;
 
 import com.genius.zydl.testproject.R;
 import com.genius.zydl.testproject.fragments.FragmentOne;
-import com.genius.zydl.testproject.fragments.FragmentThree;
 import com.genius.zydl.testproject.fragments.FragmentTwo;
 
 public class BottomNavigationActivity extends BasicActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private Fragment fragmentOne, fragmentTwo, fragmentThree, fragmentNow;
+    private Fragment fragmentOne, fragmentTwo, fragmentNow;
     private FragmentManager fragmentManager;
 
     @Override
@@ -33,7 +32,6 @@ public class BottomNavigationActivity extends BasicActivity implements BottomNav
     protected void main() {
         fragmentOne = new FragmentOne();
         fragmentTwo = new FragmentTwo();
-        fragmentThree = new FragmentThree();
         fragmentManager = getSupportFragmentManager();
         initDefaultFragment();
     }
@@ -56,9 +54,6 @@ public class BottomNavigationActivity extends BasicActivity implements BottomNav
                 return true;
             case R.id.navigation_dashboard:
                 showFragment(fragmentTransaction, fragmentTwo);
-                return true;
-            case R.id.navigation_notifications:
-                showFragment(fragmentTransaction, fragmentThree);
                 return true;
         }
         return false;

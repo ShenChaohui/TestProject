@@ -1,4 +1,4 @@
-package com.genius.zydl.testproject.fragments;
+package com.genius.zydl.testproject.activitys;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -7,20 +7,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.genius.zydl.testproject.R;
 import com.genius.zydl.testproject.utils.PathUtil;
+import com.genius.zydl.testproject.utils.RealPathFromUriUtil;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -32,14 +28,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import static android.app.Activity.RESULT_OK;
-
-
-public class FragmentThree extends Fragment {
+public class UserPermissionActivity extends BasicActivity {
     private Button mButtonCamera, mButtonAlbum;
-    private ImageView iv;
+    private ImageView mIvPhoto;
+    private TextView mTvPhotoPath;
 
-    private Uri photoUri;
+    private String mPhotoPath;
+    private Uri mPhotoUri;
+
     private Rationale mRationale = new Rationale() {
         @Override
         public void showRationale(Context context, Object data, final RequestExecutor executor) {
@@ -62,17 +58,26 @@ public class FragmentThree extends Fragment {
         }
     };
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_three, container, false);
-        mButtonCamera = view.findViewById(R.id.btn_fragment_three_camera);
-        mButtonAlbum = view.findViewById(R.id.btn_fragment_three_album);
-        iv = view.findViewById(R.id.iv_fragment_three);
+    protected int getLayout() {
+        return R.layout.activity_user_permission;
+    }
+
+    @Override
+    protected void initView() {
+        initTitle();
+        mButtonCamera = findViewById(R.id.btn_camera);
+        mButtonAlbum = findViewById(R.id.btn_album);
+        mIvPhoto = findViewById(R.id.iv_photo);
+        mTvPhotoPath = findViewById(R.id.tv_photo_path);
+    }
+
+    @Override
+    protected void main() {
         mButtonCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AndPermission.with(getActivity())
+                AndPermission.with(context)
                         .runtime()
                         .permission(Permission.CAMERA)
                         .rationale(mRationale)//拒绝过一次，再请求权限，会进入这个
@@ -88,31 +93,31 @@ public class FragmentThree extends Fragment {
                             public void onAction(List<String> data) {
                                 //没有获去到权限
                                 //如果是永久忽略了这些权限，提示去设置中打开
-                                if (AndPermission.hasAlwaysDeniedPermission(getActivity(), data)) {
-                                    List<String> permissions = Permission.transformText(getActivity(), data);
+                                if (AndPermission.hasAlwaysDeniedPermission(context, data)) {
+                                    List<String> permissions = Permission.transformText(context, data);
                                     StringBuffer sb = new StringBuffer();
                                     for (int i = 0; i < permissions.size(); i++) {
                                         sb.append(permissions.get(i) + "权限,");
                                     }
                                     //弹窗提示
-                                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                                    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
                                     dialog.setTitle("您永久的关闭了" + sb + "程序无法运行");
                                     dialog.setMessage("是否去设置中打开?");
                                     dialog.setPositiveButton("打开", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             //去设置中打开
-                                            AndPermission.with(getActivity())
+                                            AndPermission.with(context)
                                                     .runtime()
                                                     .setting()
                                                     .onComeback(new Setting.Action() {
                                                         @Override
                                                         public void onAction() {
                                                             // 用户从设置回来了。
-                                                            if (AndPermission.hasPermissions(getActivity(), Permission.CAMERA)) {
+                                                            if (AndPermission.hasPermissions(context, Permission.CAMERA)) {
                                                                 openCamera();
                                                             } else {
-                                                                Toast.makeText(getActivity(), "您拒绝了相机权限，无法打开相机", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(context, "您拒绝了相机权限，无法打开相机", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     })
@@ -122,12 +127,12 @@ public class FragmentThree extends Fragment {
                                     dialog.setNegativeButton("忽略", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            Toast.makeText(getActivity(), "您拒绝了相机权限，无法打开相机", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "您拒绝了相机权限，无法打开相机", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                     dialog.show();
                                 } else {//普通的拒绝
-                                    Toast.makeText(getActivity(), "您拒绝了相机权限，无法打开相机", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "您拒绝了相机权限，无法打开相机", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         })
@@ -140,7 +145,6 @@ public class FragmentThree extends Fragment {
                 openAlbums();
             }
         });
-        return view;
     }
 
     private void openAlbums() {
@@ -151,11 +155,11 @@ public class FragmentThree extends Fragment {
     }
 
     private void openCamera() {
-        String photoPath = PathUtil.getPicDirPath(getActivity()) + "/" + System.currentTimeMillis() + ".jpg";
-        File photoFile = new File(photoPath);
+        mPhotoPath = PathUtil.getPicDirPath(context) + "/" + System.currentTimeMillis() + ".jpg";
+        File photoFile = new File(mPhotoPath);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 启动系统相机
-        photoUri = AndPermission.getFileUri(getActivity(), photoFile);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+        mPhotoUri = AndPermission.getFileUri(context, photoFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, mPhotoUri);
         startActivityForResult(intent, 0x01);
     }
 
@@ -164,21 +168,22 @@ public class FragmentThree extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0x01 && resultCode == RESULT_OK) {
             try {
-                Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(photoUri));
-                iv.setImageBitmap(bitmap);
+                Bitmap bitmap = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(mPhotoUri));
+                mIvPhoto.setImageBitmap(bitmap);
+                mTvPhotoPath.setText(mPhotoPath);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         } else if (requestCode == 0x02 && resultCode == RESULT_OK) {
-            photoUri = data.getData();
+            mPhotoUri = data.getData();
             try {
-                Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(photoUri));
-                iv.setImageBitmap(bitmap);
+                Bitmap bitmap = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(mPhotoUri));
+                mIvPhoto.setImageBitmap(bitmap);
+                mPhotoPath = RealPathFromUriUtil.getRealPathFromUri(context, mPhotoUri);
+                mTvPhotoPath.setText(mPhotoPath);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
-
-
     }
 }
