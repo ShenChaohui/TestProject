@@ -10,4 +10,42 @@
         <attr name="metaButtonBarStyle" format="reference" />
         <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="CircleView">
+        <!--在attr标签下设置需要的自定义属性-->
+        <!--此处定义了一个设置图形的颜色:circle_color属性,格式是color,代表颜色-->
+        <!--格式有很多种,如资源id(reference)等等-->
+        <attr name="circle_color" format="color"/>
+        <attr name="circle_text" format="string"/>
+
+    </declare-styleable>
+
+    <!--自定义属性-->
+    <declare-styleable name="WatchBoard">
+        <!--表盘的内边距-->
+        <attr name="wb_padding" format="dimension"/>
+        <!--表盘文字大小-->
+        <attr name="wb_text_size" format="dimension"/>
+        <!--时针的宽度-->
+        <attr name="wb_hour_pointer_width" format="dimension"/>
+        <!--分针的宽度-->
+        <attr name="wb_minute_pointer_width" format="dimension"/>
+        <!--秒针的宽度-->
+        <attr name="wb_second_pointer_width" format="dimension"/>
+        <!--指针圆角值-->
+        <attr name="wb_pointer_corner_radius" format="dimension"/>
+        <!--指针超过中心点的长度-->
+        <attr name="wb_pointer_end_length" format="dimension"/>
+        <!--时刻刻度颜色-->
+        <attr name="wb_scale_long_color" format="color"/>
+        <!--非时刻刻度颜色-->
+        <attr name="wb_scale_short_color" format="color"/>
+        <!--时针颜色-->
+        <attr name="wb_hour_pointer_color" format="color"/>
+        <!--分针颜色-->
+        <attr name="wb_minute_pointer_color" format="color"/>
+        <!--秒针颜色-->
+        <attr name="wb_second_pointer_color" format="color"/>
+    </declare-styleable>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.genius.zydl.testproject.activitys;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_main_amap).setOnClickListener(this);
         findViewById(R.id.btn_main_broadcast).setOnClickListener(this);
         findViewById(R.id.btn_main_take_photo).setOnClickListener(this);
+        findViewById(R.id.btn_main_diy_view).setOnClickListener(this);
 
     }
 
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_main_take_photo:
                 startActivity(new Intent(this, TakePhotoActivity.class));
                 break;
+            case R.id.btn_main_diy_view:
+                startActivity(new Intent(this, DIYViewActivity.class));
         }
 
     }
