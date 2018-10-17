@@ -26,27 +26,27 @@
                 android:id="@+id/btn_main_bottom_navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BottomNavigation模板" />
+                android:text="BottomNavigation" />
             <Button
             android:id="@+id/btn_main_tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="tablayout和viewpager绑定" />
+            android:text="tablayout和viewpager" />
             <Button
-                android:id="@+id/btn_main_location"
+                android:id="@+id/btn_main_amap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="定位" />
+                android:text="高德地图" />
             <Button
                 android:id="@+id/btn_main_broadcast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="广播"/>
+                android:text="广播发送接收"/>
             <Button
-                android:id="@+id/btn_main_user_permission"
+                android:id="@+id/btn_main_take_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="权限"/>
+                android:text="拍照或从相册选取照片"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

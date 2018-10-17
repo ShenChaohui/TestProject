@@ -17,7 +17,7 @@ import com.genius.zydl.testproject.R;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 
-public class LocationActivity extends BasicActivity {
+public class AmapActivity extends BasicActivity {
     private MapView mMapView;
     private TextView mLat, mLon, mAddress;
 
@@ -62,7 +62,7 @@ public class LocationActivity extends BasicActivity {
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_location;
+        return R.layout.activity_amap;
     }
 
     @Override

@@ -29,11 +29,11 @@
             android:name=".activitys.BottomNavigationActivity"
             android:label="@string/title_activity_bottom_navigation" />
         <activity android:name=".activitys.TabLayoutActivity" />
-        <activity android:name=".activitys.LocationActivity" />
+        <activity android:name=".activitys.AmapActivity" />
         <activity
             android:name=".activitys.BroadcastActivity"
             android:label="广播" />
-        <activity android:name=".activitys.UserPermissionActivity"
+        <activity android:name=".activitys.TakePhotoActivity"
             android:label="权限"/>
 
         <meta-data

@@ -28,7 +28,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-public class UserPermissionActivity extends BasicActivity {
+public class TakePhotoActivity extends BasicActivity {
     private Button mButtonCamera, mButtonAlbum;
     private ImageView mIvPhoto;
     private TextView mTvPhotoPath;
@@ -60,7 +60,7 @@ public class UserPermissionActivity extends BasicActivity {
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_user_permission;
+        return R.layout.activity_take_photo;
     }
 
     @Override

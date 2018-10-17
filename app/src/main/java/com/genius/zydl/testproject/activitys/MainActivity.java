@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_main_install_app).setOnClickListener(this);
         findViewById(R.id.btn_main_bottom_navigation).setOnClickListener(this);
         findViewById(R.id.btn_main_tablayout).setOnClickListener(this);
-        findViewById(R.id.btn_main_location).setOnClickListener(this);
+        findViewById(R.id.btn_main_amap).setOnClickListener(this);
         findViewById(R.id.btn_main_broadcast).setOnClickListener(this);
-        findViewById(R.id.btn_main_user_permission).setOnClickListener(this);
+        findViewById(R.id.btn_main_take_photo).setOnClickListener(this);
 
     }
 
@@ -40,14 +40,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_main_tablayout:
                 startActivity(new Intent(this, TabLayoutActivity.class));
                 break;
-            case R.id.btn_main_location:
-                startActivity(new Intent(this, LocationActivity.class));
+            case R.id.btn_main_amap:
+                startActivity(new Intent(this, AmapActivity.class));
                 break;
             case R.id.btn_main_broadcast:
                 startActivity(new Intent(this, BroadcastActivity.class));
                 break;
-            case R.id.btn_main_user_permission:
-                startActivity(new Intent(this, UserPermissionActivity.class));
+            case R.id.btn_main_take_photo:
+                startActivity(new Intent(this, TakePhotoActivity.class));
                 break;
         }
 
