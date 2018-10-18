@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#000"
     android:orientation="vertical">
 
     <com.genius.zydl.testproject.views.WatchBoard
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:wb_scale_short_color="@color/colorAccent"/>
+        android:layout_centerInParent="true"
+        android:background="#000"
+        app:wb_scale_short_color="#cdcdcd" />
 
-</LinearLayout>
+</RelativeLayout>
