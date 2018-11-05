@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.genius.zydl.testproject.R;
 
-public class DIYViewActivity extends Activity{
+public class DIYViewActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

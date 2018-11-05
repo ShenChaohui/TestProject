@@ -39,11 +39,11 @@ public class WatchBoard extends View {
     private int width; // 钟表的边长
 
     public WatchBoard(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public WatchBoard(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public WatchBoard(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -60,7 +60,6 @@ public class WatchBoard extends View {
         // 默认和屏幕的宽高最小值相等
         width = Math.min(widthPixels, heightPixels);
     }
-
 
     private void obtainStyledAttrs(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.WatchBoard);
@@ -81,17 +80,20 @@ public class WatchBoard extends View {
         // 一定要回收
         typedArray.recycle();
     }
+
     private void initPaint() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
     }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mRadius = (Math.min(w, h) - mPadding) / 2;
         mPointEndLength = mRadius / 6; // 设置成半径的六分之一
     }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -122,11 +124,13 @@ public class WatchBoard extends View {
         // 每一秒刷新一次
         postInvalidateDelayed(1000);
     }
+
     private void drawCircle(Canvas canvas) {
         mPaint.setColor(Color.BLACK);
         mPaint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(width / 2, width / 2, mRadius, mPaint);
     }
+
     private void printScale(Canvas canvas) {
         mPaint.setStrokeWidth(DptoPx(1));
         int lineWidth;
@@ -151,6 +155,7 @@ public class WatchBoard extends View {
             canvas.rotate(6, width / 2, width / 2);
         }
     }
+
     private void printPointer(Canvas canvas) {
         Calendar calendar = Calendar.getInstance();
 
@@ -164,8 +169,8 @@ public class WatchBoard extends View {
 
         // 绘制时针
         canvas.save();
-        canvas.rotate(angleHour,width/2,width/2); // 旋转到时针的角度
-        RectF rectHour = new RectF(width/2 -mHourPointWidth / 2, width/2 -mRadius * 3 / 5, width/2 +mHourPointWidth / 2, width/2 + mPointEndLength);
+        canvas.rotate(angleHour, width / 2, width / 2); // 旋转到时针的角度
+        RectF rectHour = new RectF(width / 2 - mHourPointWidth / 2, width / 2 - mRadius * 3 / 5, width / 2 + mHourPointWidth / 2, width / 2 + mPointEndLength);
         mPaint.setColor(mHourPointColor);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(mHourPointWidth);
@@ -173,16 +178,16 @@ public class WatchBoard extends View {
         canvas.restore();
         // 绘制分针
         canvas.save();
-        canvas.rotate(angleMinute,width/2,width/2); // 旋转到分针的角度
-        RectF rectMinute = new RectF(width/2-mMinutePointWidth / 2, width/2-mRadius * 3.5f / 5, width/2+mMinutePointWidth / 2, width/2+mPointEndLength);
+        canvas.rotate(angleMinute, width / 2, width / 2); // 旋转到分针的角度
+        RectF rectMinute = new RectF(width / 2 - mMinutePointWidth / 2, width / 2 - mRadius * 3.5f / 5, width / 2 + mMinutePointWidth / 2, width / 2 + mPointEndLength);
         mPaint.setColor(mMinutePointColor);
         mPaint.setStrokeWidth(mMinutePointWidth);
         canvas.drawRoundRect(rectMinute, mPointRadius, mPointRadius, mPaint);
         canvas.restore();
         // 绘制秒针
         canvas.save();
-        canvas.rotate(angleSecond,width/2,width/2); // 旋转到秒针的角度
-        RectF rectSecond = new RectF(width/2-mSecondPointWidth / 2, width/2-mRadius + DptoPx(10), width/2+mSecondPointWidth / 2, width/2+mPointEndLength);
+        canvas.rotate(angleSecond, width / 2, width / 2); // 旋转到秒针的角度
+        RectF rectSecond = new RectF(width / 2 - mSecondPointWidth / 2, width / 2 - mRadius + DptoPx(10), width / 2 + mSecondPointWidth / 2, width / 2 + mPointEndLength);
         mPaint.setStrokeWidth(mSecondPointWidth);
         mPaint.setColor(mSecondPointColor);
         canvas.drawRoundRect(rectSecond, mPointRadius, mPointRadius, mPaint);
@@ -190,12 +195,12 @@ public class WatchBoard extends View {
 
         // 绘制原点
         mPaint.setStyle(Paint.Style.FILL);
-        canvas.drawCircle(width/2, width/2, mSecondPointWidth * 4, mPaint);
+        canvas.drawCircle(width / 2, width / 2, mSecondPointWidth * 4, mPaint);
     }
 
     private float SptoPx(float value) {
         float scale = getContext().getResources().getDisplayMetrics().density;
-        return value * scale ;
+        return value * scale;
     }
 
     private float DptoPx(float value) {

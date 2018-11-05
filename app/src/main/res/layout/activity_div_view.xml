@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000"
-    android:orientation="vertical">
+    >
 
     <com.genius.zydl.testproject.views.WatchBoard
         android:layout_width="300dp"
