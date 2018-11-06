@@ -25,6 +25,7 @@ public class BroadcastActivity extends BasicActivity implements View.OnClickList
 
     @Override
     protected void initView() {
+        initTitle();
         findViewById(R.id.btn_sendBroadcast).setOnClickListener(this);
         findViewById(R.id.btn_stopBroadcast).setOnClickListener(this);
         mTextView = findViewById(R.id.tv_result);
