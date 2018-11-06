@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_main_broadcast).setOnClickListener(this);
         findViewById(R.id.btn_main_take_photo).setOnClickListener(this);
         findViewById(R.id.btn_main_diy_view).setOnClickListener(this);
+        findViewById(R.id.btn_main_okhttp3).setOnClickListener(this);
 
     }
 
@@ -52,6 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_main_diy_view:
                 startActivity(new Intent(this, DIYViewActivity.class));
+                break;
+            case R.id.btn_main_okhttp3:
+                startActivity(new Intent(this, OkHttp3TestActivity.class));
+                break;
         }
 
     }

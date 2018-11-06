@@ -57,6 +57,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="自定义View" />
+
+            <Button
+                android:id="@+id/btn_main_okhttp3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OkHttp3测试" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

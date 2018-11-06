@@ -27,17 +27,20 @@
         <activity android:name=".activitys.InstallAppActivity" />
         <activity
             android:name=".activitys.BottomNavigationActivity"
-            android:label="@string/title_activity_bottom_navigation" />
-        <activity android:name=".activitys.TabLayoutActivity" />
+            android:label="BottomNavigation" />
+        <activity android:name=".activitys.TabLayoutActivity"
+            android:label="Tablayout和ViewPager"/>
         <activity android:name=".activitys.AmapActivity" />
         <activity
             android:name=".activitys.BroadcastActivity"
             android:label="广播" />
         <activity android:name=".activitys.TakePhotoActivity"
-            android:label="获去照片"/>
+            android:label="获取照片"/>
         <activity android:name=".activitys.DIYViewActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:label="自定义view"/>
+        <activity android:name=".activitys.OkHttp3TestActivity"
+            android:label="OkHttp3测试"/>
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="93865972713427fe5dc65389d756bfca"/>

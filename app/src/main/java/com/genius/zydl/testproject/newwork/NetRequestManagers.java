@@ -1,7 +1,10 @@
 package com.genius.zydl.testproject.newwork;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.genius.zydl.testproject.adapters.ListViewCommonAdapter;
 import com.genius.zydl.testproject.entity.Movie;
@@ -14,7 +17,13 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class NetRequestManagers {
 
@@ -54,6 +63,32 @@ public class NetRequestManagers {
                 dialog.dismiss();
             }
         });
+
+    }
+
+    public static void getMoviewByOkHttp3(final Context context, int start, int count, final TextView textView) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        String url = Urls.GET_MOVIE_TOP250 + "?start=" + start + "&count=" + count;
+        final Request request = new Request.Builder().url(url).get().build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("onFailure", e.toString());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String result = response.body().string();
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        textView.setText(result);
+                    }
+                });
+            }
+        });
+
 
     }
 }
