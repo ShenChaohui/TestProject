@@ -63,6 +63,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="OkHttp3测试" />
+            <Button
+                android:id="@+id/btn_main_open_app"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="打开其他应用" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
