@@ -48,6 +48,9 @@
         <activity
             android:name=".activitys.OpenOtherAppActivity"
             android:label="打开其他应用" />
+        <activity
+            android:name=".activitys.MoneyCountActivity"
+            android:label="资产" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"

@@ -41,4 +41,5 @@ dependencies {
     implementation 'com.yanzhenjie:permission:2.0.0-rc12'
     implementation files('libs/AMap3DMap_6.5.0_AMapSearch_6.5.0_20180930.jar')
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.1'
 }

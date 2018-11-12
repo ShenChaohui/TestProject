@@ -3,7 +3,7 @@ package com.genius.zydl.testproject.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.genius.zydl.testproject.entity.MovieJson;
+import com.genius.zydl.testproject.entity.Property;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -32,7 +32,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
         try {
-            TableUtils.createTable(connectionSource, MovieJson.class);
+            TableUtils.createTable(connectionSource, Property.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,7 +42,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
-            TableUtils.dropTable(connectionSource, MovieJson.class, true);
+            TableUtils.dropTable(connectionSource, Property.class, true);
             onCreate(sqLiteDatabase, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -68,6 +68,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="打开其他应用" />
+            <Button
+                android:id="@+id/btn_main_chart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="资产计算" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
