@@ -1,6 +1,5 @@
 package com.genius.zydl.testproject.activitys;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -34,7 +33,7 @@ public class OpenOtherAppActivity extends BasicActivity {
         mLvApp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                openApplication(data.get(i).getPackageName(), data.get(i).getMainClassName());
+                openApplication(data.get(i).getPackageName());
             }
         });
     }
@@ -42,7 +41,7 @@ public class OpenOtherAppActivity extends BasicActivity {
     @Override
     protected void main() {
         data = new ArrayList<>();
-        getAppInfos();
+        getAllAppInfo();
         ListViewCommonAdapter<AppInfo> adapter = new ListViewCommonAdapter<AppInfo>(context, data, R.layout.item_app_info) {
             @Override
             public void convert(ViewHolder holder, AppInfo item) {
@@ -55,26 +54,22 @@ public class OpenOtherAppActivity extends BasicActivity {
         mLvApp.setAdapter(adapter);
     }
 
-    private void openApplication(String packageName, String mainClassName) {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        ComponentName cn = new ComponentName(packageName, mainClassName);
-        intent.setComponent(cn);
+    private void openApplication(String packageName) {
+        Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);
         startActivity(intent);
     }
 
 
-    private void getAppInfos() {
+    private void getAllAppInfo() {
         PackageManager packageManager = context.getPackageManager();
         Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
         resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         List<ResolveInfo> resolveinfoList = getPackageManager().queryIntentActivities(resolveIntent, 0);
-        for (ResolveInfo rInfo : resolveinfoList) {
-            Drawable appIcon = packageManager.getApplicationIcon(rInfo.activityInfo.applicationInfo);//获得应用的图标
-            String appName = packageManager.getApplicationLabel(rInfo.activityInfo.applicationInfo).toString();//获得应用名
-            String packageName = rInfo.activityInfo.applicationInfo.packageName;//获得应用包名
-            String mainClassName = rInfo.activityInfo.name;
-            data.add(new AppInfo(appName, packageName, mainClassName, appIcon));
+        for (ResolveInfo resolveInfo : resolveinfoList) {
+            Drawable appIcon = packageManager.getApplicationIcon(resolveInfo.activityInfo.applicationInfo);//获得应用的图标
+            String appName = packageManager.getApplicationLabel(resolveInfo.activityInfo.applicationInfo).toString();//获得应用名
+            String packageName = resolveInfo.activityInfo.applicationInfo.packageName;//获得应用包名
+            data.add(new AppInfo(appName, packageName, appIcon));
         }
     }
 }

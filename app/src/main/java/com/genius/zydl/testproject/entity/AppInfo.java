@@ -5,13 +5,11 @@ import android.graphics.drawable.Drawable;
 public class AppInfo {
     private String mAppName;
     private String mPackageName;
-    private String mMainClassName;
     private Drawable mAppIcon;
 
-    public AppInfo(String appName, String packageName, String mainClassName, Drawable appIcon) {
+    public AppInfo(String appName, String packageName, Drawable appIcon) {
         mAppName = appName;
         mPackageName = packageName;
-        mMainClassName = mainClassName;
         mAppIcon = appIcon;
     }
 
@@ -39,11 +37,4 @@ public class AppInfo {
         mPackageName = packageName;
     }
 
-    public String getMainClassName() {
-        return mMainClassName;
-    }
-
-    public void setMainClassName(String mainClassName) {
-        mMainClassName = mainClassName;
-    }
 }
