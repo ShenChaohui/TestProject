@@ -30,7 +30,11 @@ public class TimeUtil {
         String time = simpleDateFormat.format(System.currentTimeMillis());
         return time;
     }
-
+    public static String getCurrentTime(long data) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+        String time = simpleDateFormat.format(data);
+        return time;
+    }
     /**
      * 获取当前长日期
      *
@@ -47,6 +51,7 @@ public class TimeUtil {
         String date = simpleDateFormat.format(data);
         return date;
     }
+
 
     /**
      * 获取当前短日期

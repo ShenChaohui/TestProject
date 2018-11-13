@@ -3,14 +3,23 @@ package com.genius.zydl.testproject.entity;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.UUID;
+
 @DatabaseTable
 public class Property {
     @DatabaseField(id = true)
+    private String id;
+    @DatabaseField
     private String mName;
     @DatabaseField
     private double mMoney;
 
     public Property() {
+        id = UUID.randomUUID().toString();
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
