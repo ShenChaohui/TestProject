@@ -209,7 +209,6 @@ public class MoneyCountActivity extends BasicActivity {
         xAxis.setDrawLabels(false);//绘制标签  指x轴上的对应数值
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//设置x轴的显示位置
         xAxis.setGranularity(1f);//禁止放大后x轴标签重绘
-
         //描述
         Description description = new Description();
         description.setEnabled(false);
@@ -218,20 +217,21 @@ public class MoneyCountActivity extends BasicActivity {
         Legend legend = mLineChart.getLegend();
         legend.setEnabled(false);
 
-        mLineChart.setScaleYEnabled(false);
         mLineChart.setNoDataText("暂无数据");
+        mLineChart.setScaleYEnabled(false);
     }
 
     private void setLineChartData() {
-        List<Entry> entries = new ArrayList<>();
+        List<AllPropertyHistory> historyList = new ArrayList<>();
         try {
-            List<AllPropertyHistory> historyList = mHdao.queryAll();
-            for (int j = 0; j < historyList.size(); j++) {
-                Entry entry = new Entry(j, (float) historyList.get(j).getMoney());
-                entries.add(entry);
-            }
+            historyList.addAll(mHdao.queryAll());
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        List<Entry> entries = new ArrayList<>();
+        for (int j = 0; j < historyList.size(); j++) {
+            Entry entry = new Entry(j, (float) historyList.get(j).getMoney());
+            entries.add(entry);
         }
         if (entries.size() > 0) {
             LineDataSet dataSet = new LineDataSet(entries, "label");
