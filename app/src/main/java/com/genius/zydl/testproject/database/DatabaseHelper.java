@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.genius.zydl.testproject.entity.Property;
-import com.genius.zydl.testproject.entity.PropertyHistory;
+import com.genius.zydl.testproject.entity.AllPropertyHistory;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -34,7 +34,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, Property.class);
-            TableUtils.createTable(connectionSource, PropertyHistory.class);
+            TableUtils.createTable(connectionSource, AllPropertyHistory.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,7 +45,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
             TableUtils.dropTable(connectionSource, Property.class, true);
-            TableUtils.dropTable(connectionSource, PropertyHistory.class, true);
+            TableUtils.dropTable(connectionSource, AllPropertyHistory.class, true);
             onCreate(sqLiteDatabase, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();
