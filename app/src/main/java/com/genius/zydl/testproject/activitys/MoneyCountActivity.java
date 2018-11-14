@@ -237,6 +237,9 @@ public class MoneyCountActivity extends BasicActivity {
             LineDataSet dataSet = new LineDataSet(entries, "label");
             LineData lineData = new LineData(dataSet);
             mLineChart.setData(lineData);
+            float scale = (float) entries.size() / (float) 6;
+            mLineChart.zoom(scale, 1f, 0, 0);
+            mLineChart.moveViewToX(entries.size() - 1);
             mLineChart.invalidate();
         }
     }
