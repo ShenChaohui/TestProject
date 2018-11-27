@@ -2,6 +2,7 @@ package com.genius.zydl.testproject.activitys;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,24 +18,24 @@ import com.genius.zydl.testproject.database.BaseDao;
 import com.genius.zydl.testproject.database.BaseDaoImpl;
 import com.genius.zydl.testproject.entity.AllPropertyHistory;
 import com.genius.zydl.testproject.entity.Property;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
 
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import lecho.lib.hellocharts.gesture.ContainerScrollType;
+import lecho.lib.hellocharts.gesture.ZoomType;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.Viewport;
+import lecho.lib.hellocharts.view.LineChartView;
+
 public class MoneyCountActivity extends BasicActivity {
     private ListView mListView;
     private TextView mTvAllMoney;
-    private LineChart mLineChart;
+    private LineChartView mLineChart;
 
     private ListViewCommonAdapter adapter;
     private List<Property> mProperties;
@@ -191,34 +192,8 @@ public class MoneyCountActivity extends BasicActivity {
     }
 
     private void initLineChart() {
-        //设置样式
-        YAxis rightAxis = mLineChart.getAxisRight();
-        //设置图表右边的y轴禁用
-        rightAxis.setEnabled(false);
-        rightAxis.setDrawGridLines(false);
-        rightAxis.setDrawLabels(false);
-        YAxis leftAxis = mLineChart.getAxisLeft();
-        //设置图表左边的y轴禁用
-        leftAxis.setEnabled(false);
-        leftAxis.setDrawGridLines(false);
-        leftAxis.setDrawLabels(false);
-        //设置x轴
-        XAxis xAxis = mLineChart.getXAxis();
-        xAxis.setDrawAxisLine(false);//是否绘制轴线
-        xAxis.setDrawGridLines(false);//设置x轴上每个点对应的线
-        xAxis.setDrawLabels(false);//绘制标签  指x轴上的对应数值
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//设置x轴的显示位置
-        xAxis.setGranularity(1f);//禁止放大后x轴标签重绘
-        //描述
-        Description description = new Description();
-        description.setEnabled(false);
-        mLineChart.setDescription(description);
-        //图例
-        Legend legend = mLineChart.getLegend();
-        legend.setEnabled(false);
-
-        mLineChart.setNoDataText("暂无数据");
-        mLineChart.setScaleYEnabled(false);
+        mLineChart.setInteractive(true);//允许交互
+        mLineChart.setZoomEnabled(false);//不允许放大
     }
 
     private void setLineChartData() {
@@ -228,19 +203,22 @@ public class MoneyCountActivity extends BasicActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        List<Entry> entries = new ArrayList<>();
-        for (int j = 0; j < historyList.size(); j++) {
-            Entry entry = new Entry(j, (float) historyList.get(j).getMoney());
-            entries.add(entry);
+        ArrayList<PointValue> pointValues = new ArrayList<>();
+        for (int i = 0; i < historyList.size(); i++) {
+            pointValues.add(new PointValue(i, (float) historyList.get(i).getMoney()));
         }
-        if (entries.size() > 0) {
-            LineDataSet dataSet = new LineDataSet(entries, "label");
-            LineData lineData = new LineData(dataSet);
-            mLineChart.setData(lineData);
-            float scale = (float) entries.size() / (float) 6;
-            mLineChart.zoom(scale, 1f, 0, 0);
-            mLineChart.moveViewToX(entries.size() - 1);
-            mLineChart.invalidate();
+        Line line = new Line(pointValues);
+        line.setColor(Color.parseColor("#AA66CC"));
+        line.setHasLabels(true);
+        ArrayList<Line> lines = new ArrayList<>();
+        lines.add(line);
+        LineChartData lineChartData = new LineChartData(lines);
+        mLineChart.setLineChartData(lineChartData);
+        if (pointValues.size() > 6) {
+            Viewport v = new Viewport(mLineChart.getMaximumViewport());
+            v.left = pointValues.size() - 7;
+            v.right = pointValues.size() - 1;
+            mLineChart.setCurrentViewport(v);
         }
     }
 

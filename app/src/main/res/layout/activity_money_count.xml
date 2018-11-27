@@ -51,7 +51,7 @@
         android:layout_height="1dip"
         android:background="#ddd" />
 
-    <com.github.mikephil.charting.charts.LineChart
+    <lecho.lib.hellocharts.view.LineChartView
         android:id="@+id/lc_history"
         android:layout_width="match_parent"
         android:layout_height="242dp"
