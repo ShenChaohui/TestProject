@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 
 import com.genius.zydl.testproject.R;
 import com.genius.zydl.testproject.fragments.FragmentOne;
+import com.genius.zydl.testproject.fragments.FragmentThree;
 import com.genius.zydl.testproject.fragments.FragmentTwo;
 
 import java.util.ArrayList;
@@ -39,6 +40,8 @@ public class TabLayoutActivity extends BasicActivity {
         mFragments.add(new FragmentOne());
         mTitles.add("图书");
         mFragments.add(new FragmentTwo());
+        mTitles.add("三级联动");
+        mFragments.add(new FragmentThree());
 
         mViewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override

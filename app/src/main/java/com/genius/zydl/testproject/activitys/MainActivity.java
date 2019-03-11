@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         AndPermission.with(this)
                 .runtime()
-                .permission(Permission.WRITE_EXTERNAL_STORAGE)
+                .permission(Permission.Group.STORAGE, Permission.Group.LOCATION)
                 .start();
         findViewById(R.id.btn_main_install_app).setOnClickListener(this);
         findViewById(R.id.btn_main_bottom_navigation).setOnClickListener(this);
@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_main_okhttp3).setOnClickListener(this);
         findViewById(R.id.btn_main_open_app).setOnClickListener(this);
         findViewById(R.id.btn_main_chart).setOnClickListener(this);
+        findViewById(R.id.btn_main_location).setOnClickListener(this);
+        findViewById(R.id.btn_main_speech).setOnClickListener(this);
+        findViewById(R.id.btn_main_smartshow).setOnClickListener(this);
 
     }
 
@@ -64,6 +67,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_main_chart:
                 startActivity(new Intent(this, MoneyCountActivity.class));
+                break;
+            case R.id.btn_main_location:
+                startActivity(new Intent(this, LocationActivity.class));
+                break;
+            case R.id.btn_main_speech:
+                startActivity(new Intent(this, SpeechActivity.class));
+                break;
+            case R.id.btn_main_smartshow:
+                startActivity(new Intent(this, SmartShowActivity.class));
                 break;
         }
 

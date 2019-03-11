@@ -63,16 +63,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="OkHttp3测试" />
+
             <Button
                 android:id="@+id/btn_main_open_app"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="打开其他应用" />
+
             <Button
                 android:id="@+id/btn_main_chart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="资产计算" />
+
+            <Button
+                android:id="@+id/btn_main_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="原生定位" />
+            <Button
+                android:id="@+id/btn_main_speech"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="文字转语音" />
+            <Button
+                android:id="@+id/btn_main_smartshow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="smartshow" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

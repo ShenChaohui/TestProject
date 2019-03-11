@@ -71,8 +71,8 @@ public class WatchBoard extends View {
         mPointRadius = typedArray.getDimension(R.styleable.WatchBoard_wb_pointer_corner_radius, DptoPx(10));
         mPointEndLength = typedArray.getDimension(R.styleable.WatchBoard_wb_pointer_end_length, DptoPx(10));
 
-        mHourPointColor = typedArray.getColor(R.styleable.WatchBoard_wb_hour_pointer_color, Color.WHITE);
-        mMinutePointColor = typedArray.getColor(R.styleable.WatchBoard_wb_minute_pointer_color, Color.WHITE);
+        mHourPointColor = typedArray.getColor(R.styleable.WatchBoard_wb_hour_pointer_color, Color.BLACK);
+        mMinutePointColor = typedArray.getColor(R.styleable.WatchBoard_wb_minute_pointer_color, Color.BLACK);
         mSecondPointColor = typedArray.getColor(R.styleable.WatchBoard_wb_second_pointer_color, Color.RED);
         mColorLong = typedArray.getColor(R.styleable.WatchBoard_wb_scale_long_color, Color.argb(225, 0, 0, 0));
         mColorShort = typedArray.getColor(R.styleable.WatchBoard_wb_scale_short_color, Color.argb(125, 0, 0, 0));
@@ -126,7 +126,7 @@ public class WatchBoard extends View {
     }
 
     private void drawCircle(Canvas canvas) {
-        mPaint.setColor(Color.BLACK);
+        mPaint.setColor(Color.WHITE);
         mPaint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(width / 2, width / 2, mRadius, mPaint);
     }
@@ -143,7 +143,7 @@ public class WatchBoard extends View {
                 String text = ((i / 5) == 0 ? 12 : (i / 5)) + "";
                 Rect textBound = new Rect();
                 mPaint.getTextBounds(text, 0, text.length(), textBound);
-                mPaint.setColor(Color.WHITE);
+                mPaint.setColor(Color.BLACK);
                 canvas.drawText(text, width / 2 - textBound.width() / 2, textBound.height() + DptoPx(5) + lineWidth + mPadding, mPaint);
 
             } else {
